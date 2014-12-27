@@ -8,6 +8,7 @@ import logging
 import os
 import sys
 from types import MethodType
+import ssl
 
 from proboscis import TestProgram
 
