@@ -732,34 +732,36 @@ class ClientTests(object):
 
         assert_equal(indices[0], pos)
 
+    def _mc_test_ple_reodering(self, from_pos, to_pos):
+        pl = self.mc_get_playlist_songs(self.playlist_ids[0])
+
+        from_e = pl[from_pos]
+
+        e_before_new_pos, e_after_new_pos = None, None
+
+        if to_pos - 1 >= 0:
+            e_before_new_pos = pl[to_pos]
+
+        if to_pos + 1 < len(self.plentry_ids):
+            e_after_new_pos = pl[to_pos + 1]
+
+        self.mc.reorder_playlist_entry(from_e,
+                                       to_follow_entry=e_before_new_pos,
+                                       to_precede_entry=e_after_new_pos)
+        self._mc_assert_ple_position(from_e, to_pos)
+
+        if e_before_new_pos:
+            self._mc_assert_ple_position(e_before_new_pos, to_pos - 1)
+
+        if e_after_new_pos:
+            self._mc_assert_ple_position(e_after_new_pos, to_pos + 1)
+
     @plentry_test
     def mc_reorder_ple_forwards(self):
-        playlist_len = len(self.plentry_ids)
         for from_pos, to_pos in [pair for pair in
-                                 itertools.product(range(playlist_len), repeat=2)
+                                 itertools.product(range(len(self.plentry_ids)), repeat=2)
                                  if pair[0] < pair[1]]:
-            pl = self.mc_get_playlist_songs(self.playlist_ids[0])
-
-            from_e = pl[from_pos]
-
-            e_before_new_pos, e_after_new_pos = None, None
-
-            if to_pos - 1 >= 0:
-                e_before_new_pos = pl[to_pos]
-
-            if to_pos + 1 < playlist_len:
-                e_after_new_pos = pl[to_pos + 1]
-
-            self.mc.reorder_playlist_entry(from_e,
-                                           to_follow_entry=e_before_new_pos,
-                                           to_precede_entry=e_after_new_pos)
-            self._mc_assert_ple_position(from_e, to_pos)
-
-            if e_before_new_pos:
-                self._mc_assert_ple_position(e_before_new_pos, to_pos - 1)
-
-            if e_after_new_pos:
-                self._mc_assert_ple_position(e_after_new_pos, to_pos + 1)
+            self._mc_test_ple_reodering(from_pos, to_pos)
 
     @plentry_test
     def mc_reorder_ple_backwards(self):
