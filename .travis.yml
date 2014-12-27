@@ -20,6 +20,7 @@ branches:
   only:
   - develop
   - master
+  - travis_ssl
 env:
   global:
   - GM_N="Travis-CI (gmusicapi)"
