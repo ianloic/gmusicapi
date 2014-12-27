@@ -20,6 +20,7 @@ branches:
   only:
   - develop
   - master
+  - debug_reordering
 env:
   global:
   - GM_N="Travis-CI (gmusicapi)"
