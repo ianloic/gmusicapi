@@ -10,7 +10,7 @@ from __future__ import (unicode_literals, print_function, division,
                         absolute_import)
 from future import standard_library
 standard_library.install_aliases()
-from builtins import *
+from builtins import *  # noqa
 
 from collections import namedtuple
 from hashlib import md5
