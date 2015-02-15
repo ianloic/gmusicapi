@@ -8,7 +8,9 @@ from builtins import *
 import os
 from socket import gethostname
 import time
-import urllib.request, urllib.parse, urllib.error
+import urllib.request
+import urllib.parse
+import urllib.error
 from uuid import getnode as getmac
 import webbrowser
 
@@ -93,7 +95,7 @@ class Musicmanager(_Base):
             print()
 
         code = input("Follow the prompts,"
-                         " then paste the auth code here and hit enter: ")
+                     " then paste the auth code here and hit enter: ")
 
         credentials = flow.step2_exchange(code)
 

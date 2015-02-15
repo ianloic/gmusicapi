@@ -9,6 +9,7 @@ from future.utils import python_2_unicode_compatible
 standard_library.install_aliases()
 from builtins import *
 
+
 @python_2_unicode_compatible
 class CallFailure(Exception):
     """Exception raised when a Google Music server responds that a call failed.
