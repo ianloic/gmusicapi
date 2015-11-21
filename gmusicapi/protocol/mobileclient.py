@@ -30,6 +30,7 @@ sj_video = {
         'kind': {'type': 'string'},
         'id': {'type': 'string'},
         'thumbnails': {'type': 'array',
+                       'required': False,
                        'items': {'type': 'object', 'properties': {
                            'url': {'type': 'string'},
                            'width': {'type': 'integer'},
