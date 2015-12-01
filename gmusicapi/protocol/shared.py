@@ -204,6 +204,7 @@ class Call(object):
             log.debug("%s(<omitted>)", call_name)
 
         req_kwargs = cls.build_request(*args, **kwargs)
+        req_kwargs['timeout'] = 15.0 # Fifteen second timeout.
 
         response = session.send(req_kwargs, cls.required_auth)
         # TODO trim the logged response if it's huge?
